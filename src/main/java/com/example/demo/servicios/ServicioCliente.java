@@ -30,4 +30,11 @@ public class ServicioCliente {
         repoCliente.delete(cliente);
     }
 
+    public Cliente consultarClientePorDocumento(Integer doc){
+        return repoCliente.findById(doc).get();
+    }
+
+    public void eliminarClientePorDocumento(Integer doc){
+        repoCliente.deleteById(doc);
+    }
 }

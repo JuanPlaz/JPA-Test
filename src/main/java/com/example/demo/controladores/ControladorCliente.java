@@ -16,6 +16,12 @@ public class ControladorCliente {
     public List<Cliente> listarInfoCliente(){       //Se retorna info del cliente en lista Json
         return servCliente.listarClientes();
     }
+
+    @GetMapping("/{doc}")
+    public Cliente consultaPorDoc(@PathVariable("doc")int documento){
+        return servCliente.consultarClientePorDocumento(documento);
+    }
+
     @PostMapping
     public Cliente guardarInfoCliente(@RequestBody Cliente infoCliente){    //Se usa el RequestBody para que reconozca el cuerpo de la petición
         return servCliente.guardarCliente(infoCliente);
@@ -29,4 +35,9 @@ public class ControladorCliente {
         servCliente.eliminarCliente(infoCliente);
     }
 
+    @DeleteMapping("/{doc}")
+    public void eliminarClientePorDoc(@PathVariable("doc")int doc){
+        servCliente.eliminarClientePorDocumento(doc);
+
+    }
 }
