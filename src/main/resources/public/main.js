@@ -131,4 +131,39 @@ $("#btnborrar").on('click', function (){
     borrarCliente();
 });
 
+function buscarUnCliente(){
+    let dato = $("#buscar").val()
+    $.ajax({
+        url: "http://localhost:8080/cliente/" + dato,
+        type: "GET",
+        dataType: "JSON",
+        success: function (respuesta){
+            console.log(respuesta)
+            mostarDatos(respuesta)
+        }
+    });
+}
+
+$("#btnbuscar").on('click', function (){
+    alert("consultar un ");
+    buscarUnCliente();
+    });
+
+function mostarDatos(dat){
+    let datosCli = "<form>"
+    datosCli += "<input type='text' id='doc' value=" + dat.documento +">"
+    datosCli += "<input type='text' id='nom' value=" + dat.nombre +">"
+    datosCli += "<input type='text' id='ape' value=" + dat.apellido +">"
+    datosCli += "<input type='text' id='cor' value=" + dat.correo +">"
+    datosCli += "<input type='text' id='cel' value=" + dat.celular +">"
+    datosCli += "<input type='button' id='btnactualizardos' value='Actualizar'>"
+    datosCli += "</form>"
+    $("#contenedorunregistro").append(datosCli);
+}
+
+$("#btnactualizardos").on('click', function (){
+    alert("sirve segundo boton actualizar")
+});
+
+
 });
